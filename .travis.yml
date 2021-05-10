@@ -22,3 +22,15 @@ after_success:
   - docker push ttmarkka/multi-nginx
   - docker push ttmarkka/multi-server
   - docker push ttmarkka/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-north-1'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: 'elasticbeanstalk-eu-north-1-717806913456'
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
